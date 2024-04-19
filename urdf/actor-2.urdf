@@ -1,0 +1,159 @@
+<?xml version = "1.0"?>
+<robot name = "ltu-actor">
+
+    <!-- material colors -->
+    <material name = "black">
+        <color rgba = "0 0 0 1"/>
+    </material>
+
+    <material name = "white">
+       <color rgba = "1 1 1 1"/>
+    </material>
+
+    <material name = "grey">
+        <color rgba = "0.5 0.5 0.5 1"/>
+     </material>
+
+     <!-- LINKS, base_link is center of vehicle rear axle -->
+
+    <link name = "base_link">
+        <visual>
+            <geometry>
+                <cylinder length = "1.38" radius = "0.03" />
+            </geometry>
+            <origin rpy = "1.57075 0 0" xyz = "0 0 0"/>
+            <material name = "grey"/>
+        </visual>
+    </link>
+
+    <link name = "front_axle">
+        <visual>
+            <geometry>
+                <cylinder length = "1.38" radius = "0.03" />
+            </geometry>
+            <origin rpy = "1.57075 0 0" xyz = "0 0 0"/>
+            <material name = "grey"/>
+        </visual>
+    </link>
+
+    <link name  = "rear_right_wheel">
+        <visual>
+            <geometry>
+                <cylinder length = "0.04" radius = "0.28"/>
+            </geometry>
+            <origin rpy = "1.57075 0 0" xyz = "0 -0.02 0"/>
+            <material name = "black"/>
+        </visual>
+    </link>
+
+    <link name  = "rear_left_wheel">
+        <visual>
+            <geometry>
+                <cylinder length = "0.04" radius = "0.28"/>
+            </geometry>
+            <origin rpy = "1.57075 0 0" xyz = "0 0.02 0"/>
+            <material name = "black"/>
+        </visual>
+    </link>
+
+    <link name  = "front_right_wheel">
+        <visual>
+            <geometry>
+                <cylinder length = "0.04" radius = "0.28"/>
+            </geometry>
+            <origin rpy = "1.57075 0 0" xyz = "0 -0.02 0"/>
+            <material name = "black"/>
+        </visual>
+    </link>
+
+    <link name  = "front_left_wheel">
+        <visual>
+            <geometry>
+                <cylinder length = "0.04" radius = "0.28"/>
+            </geometry>
+            <origin rpy = "1.57075 0 0" xyz = "0 0.02 0"/>
+            <material name = "black"/>
+        </visual>
+    </link>
+
+    <link name = "body">
+        <visual>
+            <geometry>
+                <box size = "1.69 1.30 1.545"/>
+            </geometry>
+            <origin xyz = "0.40 0 -0.7725"/>
+            <material name = "white"/>
+        </visual>
+    </link>
+
+    <!-- NEED ACTUAL CAMERA DIMENSIONS, THIS IS JUST AN APPROXIMATION -->
+    <link name = "camera">
+        <visual>
+            <geometry>
+                <box size = "0.05 0.05 0.05"/>
+            </geometry>
+            <material name = "black"/>
+        </visual>
+    </link>
+
+    <!-- NEED ACTUAL LIDAR DIMENSIONS, THIS IS JUST AN APPROXIMATION -->
+    <link name = "lidar">
+        <visual>
+            <geometry>
+                <cylinder length = "0.03" radius = "0.025"/>
+            </geometry>
+            <material name = "grey"/>
+        </visual>
+    </link>
+
+    <!-- JOINTS -->
+
+    <joint name = "base_link_to_rear_right_wheel" type = "fixed">
+        <parent link = "base_link"/>
+        <child link = "rear_right_wheel"/>
+        <origin xyz = "0 -0.69 0"/>
+    </joint>
+
+    <joint name = "base_link_to_rear_left_wheel" type = "fixed">
+        <parent link = "base_link"/>
+        <child link = "rear_left_wheel"/>
+        <origin xyz = "0 0.69 0"/>
+    </joint>
+
+    <joint name = "base_link_to_front_axle" type = "fixed">
+        <parent link = "base_link"/>
+        <child link = "front_axle"/>
+        <origin xyz = "1.69 0 0"/>
+    </joint>
+
+    <joint name = "base_link_to_body" type = "fixed">
+        <parent link = "base_link"/>
+        <child link = "body"/>
+        <origin xyz = "0.445 0 1.545"/>
+    </joint>
+
+    <joint name = "body_to_camera" type = "fixed">
+        <parent link = "body"/>
+        <child link = "camera"/>
+        <origin xyz = "0.56 0 0.025"/>
+    </joint>
+
+    <joint name = "camera_to_lidar" type = "fixed">
+        <parent link = "camera"/>
+        <child link = "lidar"/>
+        <origin xyz = "0 0 0.13"/>
+    </joint>
+
+    <joint name = "front_axle_to_front_right_wheel" type = "fixed">
+        <parent link = "front_axle"/>
+        <child link = "front_right_wheel"/>
+        <origin xyz = "0 -0.69 0"/>
+    </joint>
+
+    <joint name = "front_axle_to_front_left_wheel" type = "fixed">
+        <parent link = "front_axle"/>
+        <child link = "front_left_wheel"/>
+        <origin xyz = "0 0.69 0"/>
+    </joint>
+
+</robot>

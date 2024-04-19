@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>actor_description</name>
+    <version>0.0.1</version>
+    <description>The actor_description package</description>
+
+    <maintainer email="npaul@ltu.edu">npaul</maintainer>
+
+    <license>TODO</license>
+
+    <exec_depend>joint_state_publisher</exec_depend>
+    <exec_depend>robot_state_publisher</exec_depend>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <export> </export>
+</package>
