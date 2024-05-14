@@ -97,7 +97,7 @@
     </link>
 
     <!-- NEED ACTUAL LIDAR DIMENSIONS, THIS IS JUST AN APPROXIMATION -->
-    <link name="lidar">
+    <link name="3d_lidar">
         <visual>
             <geometry>
                 <cylinder length="0.03" radius="0.025" />
@@ -138,9 +138,9 @@
         <origin xyz="0.56 0 0.025" />
     </joint>
 
-    <joint name="camera_to_lidar" type="fixed">
+    <joint name="camera_to_3d_lidar" type="fixed">
         <parent link="camera" />
-        <child link="lidar" />
+        <child link="3d_lidar" />
         <origin xyz="0 0 0.13" />
     </joint>
 
