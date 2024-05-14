@@ -1,5 +1,5 @@
 <launch>
-    <arg name="vehicle" default="actor-2" />
+    <arg name="vehicle" default="actor-1" />
 
     <!-- Set the global "robot_description" param used by the state publishers below -->
     <param name="robot_description" command="$(find xacro)/xacro $(find actor_description)/urdf/$(arg vehicle).urdf" />
