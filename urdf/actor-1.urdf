@@ -10,99 +10,136 @@
         <color rgba="1 1 1 1" />
     </material>
 
+    <material name="light_grey">
+        <color rgba="0.7 0.7 0.7 1" />
+    </material>
+
     <material name="grey">
         <color rgba="0.5 0.5 0.5 1" />
     </material>
 
-    <!-- LINKS, base_link is center of vehicle rear axle -->
+    <material name="dark_grey">
+        <color rgba="0.1 0.1 0.1 1" />
+    </material>
 
+    <material name="red">
+        <color rgba="1 0 0 1" />
+    </material>
+
+    <material name="yellow">
+        <color rgba="1 1 0 1" />
+    </material>
+
+    <material name="light_blue">
+        <color rgba="0.5 0.5 1 1" />
+    </material>
+
+    <!-- LINKS -->
+
+    <!-- base_link is center of vehicle rear axle -->
     <link name="base_link">
         <visual>
             <geometry>
-                <cylinder length="1.38" radius="0.03" />
+                <cylinder length="1.38" radius="0.1" />
             </geometry>
             <origin rpy="1.57075 0 0" xyz="0 0 0" />
-            <material name="grey" />
+            <material name="yellow" />
         </visual>
     </link>
 
     <link name="front_axle">
         <visual>
             <geometry>
-                <cylinder length="1.38" radius="0.03" />
+                <cylinder length="1.38" radius="0.1" />
             </geometry>
             <origin rpy="1.57075 0 0" xyz="0 0 0" />
-            <material name="grey" />
+            <material name="white" />
         </visual>
     </link>
 
     <link name="rear_right_wheel">
         <visual>
             <geometry>
-                <cylinder length="0.04" radius="0.28" />
+                <cylinder length="0.2" radius="0.28" />
             </geometry>
-            <origin rpy="1.57075 0 0" xyz="0 -0.02 0" />
-            <material name="black" />
+            <origin rpy="1.57075 0 0" xyz="0 0.08 0" />
+            <material name="dark_grey" />
         </visual>
     </link>
 
     <link name="rear_left_wheel">
         <visual>
             <geometry>
-                <cylinder length="0.04" radius="0.28" />
+                <cylinder length="0.2" radius="0.28" />
             </geometry>
-            <origin rpy="1.57075 0 0" xyz="0 0.02 0" />
-            <material name="black" />
+            <origin rpy="1.57075 0 0" xyz="0 -0.08 0" />
+            <material name="dark_grey" />
         </visual>
     </link>
 
     <link name="front_right_wheel">
         <visual>
             <geometry>
-                <cylinder length="0.04" radius="0.28" />
+                <cylinder length="0.2" radius="0.28" />
             </geometry>
-            <origin rpy="1.57075 0 0" xyz="0 -0.02 0" />
-            <material name="black" />
+            <origin rpy="1.57075 0 0" xyz="0 0.08 0" />
+            <material name="dark_grey" />
         </visual>
     </link>
 
     <link name="front_left_wheel">
         <visual>
             <geometry>
-                <cylinder length="0.04" radius="0.28" />
+                <cylinder length="0.2" radius="0.28" />
             </geometry>
-            <origin rpy="1.57075 0 0" xyz="0 0.02 0" />
-            <material name="black" />
+            <origin rpy="1.57075 0 0" xyz="0 -0.08 0" />
+            <material name="dark_grey" />
         </visual>
     </link>
 
     <link name="body">
         <visual>
             <geometry>
-                <box size="1.69 1.30 1.545" />
+                <box size="2.6 1.30 1.6" />
             </geometry>
-            <origin xyz="0.40 0 -0.7725" />
-            <material name="white" />
+            <origin xyz="0.40 0 -0.8" />
+            <material name="light_blue" />
         </visual>
     </link>
 
-    <!-- NEED ACTUAL CAMERA DIMENSIONS, THIS IS JUST AN APPROXIMATION -->
-    <link name="camera">
+    <link name="front_camera">
         <visual>
             <geometry>
                 <box size="0.05 0.05 0.05" />
+            </geometry>
+            <material name="red" />
+        </visual>
+    </link>
+
+    <link name="top_3d_lidar">
+        <visual>
+            <geometry>
+                <cylinder length="0.072" radius="0.05" />
             </geometry>
             <material name="black" />
         </visual>
     </link>
 
-    <!-- NEED ACTUAL LIDAR DIMENSIONS, THIS IS JUST AN APPROXIMATION -->
-    <link name="3d_lidar">
+    <link name="front_2d_lidar">
         <visual>
             <geometry>
-                <cylinder length="0.03" radius="0.025" />
+                <cylinder length="0.08" radius="0.03" />
             </geometry>
-            <material name="grey" />
+            <material name="black" />
+        </visual>
+    </link>
+
+    <link name="rear_2d_lidar">
+        <visual>
+            <geometry>
+                <cylinder length="0.08" radius="0.03" />
+            </geometry>
+            <material name="black" />
         </visual>
     </link>
 
@@ -126,24 +163,6 @@
         <origin xyz="1.69 0 0" />
     </joint>
 
-    <joint name="base_link_to_body" type="fixed">
-        <parent link="base_link" />
-        <child link="body" />
-        <origin xyz="0.445 0 1.545" />
-    </joint>
-
-    <joint name="body_to_camera" type="fixed">
-        <parent link="body" />
-        <child link="camera" />
-        <origin xyz="0.56 0 0.025" />
-    </joint>
-
-    <joint name="camera_to_3d_lidar" type="fixed">
-        <parent link="camera" />
-        <child link="3d_lidar" />
-        <origin xyz="0 0 0.13" />
-    </joint>
-
     <joint name="front_axle_to_front_right_wheel" type="fixed">
         <parent link="front_axle" />
         <child link="front_right_wheel" />
@@ -154,6 +173,36 @@
         <parent link="front_axle" />
         <child link="front_left_wheel" />
         <origin xyz="0 0.69 0" />
+    </joint>
+
+    <joint name="base_link_to_body" type="fixed">
+        <parent link="base_link" />
+        <child link="body" />
+        <origin xyz="0.445 0 1.545" />
+    </joint>
+
+    <joint name="body_to_front_camera" type="fixed">
+        <parent link="body" />
+        <child link="front_camera" />
+        <origin xyz="0.56 0 0.03" />
+    </joint>
+
+    <joint name="camera_to_top_3d_lidar" type="fixed">
+        <parent link="front_camera" />
+        <child link="top_3d_lidar" />
+        <origin xyz="0 0 0.09" />
+    </joint>
+
+    <joint name="body_to_front_2d_lidar" type="fixed">
+        <parent link="body" />
+        <child link="front_2d_lidar" />
+        <origin xyz="1.74 0 -1.4" />
+    </joint>
+
+    <joint name="body_to_rear_2d_lidar" type="fixed">
+        <parent link="body" />
+        <child link="rear_2d_lidar" />
+        <origin xyz="-0.94 0 -1.4" />
     </joint>
 
 </robot>
