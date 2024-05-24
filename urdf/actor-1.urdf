@@ -202,7 +202,7 @@
     <joint name="body_to_rear_2d_lidar" type="fixed">
         <parent link="body" />
         <child link="rear_2d_lidar" />
-        <origin xyz="-0.94 0 -1.4" />
+        <origin xyz="-0.94 0 -1.4" rpy="0 0 1.57075" />
     </joint>
 
 </robot>
